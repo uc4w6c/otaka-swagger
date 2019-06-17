@@ -1,0 +1,17 @@
+version: '2'
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "8000:80"
+    links:
+      - swagger_editor:swagger_editor
+    depends_on:
+      - swagger_editor
+    volumes:
+      - ./docs/swagger-editor.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./docs/swagger.yml:/usr/share/nginx/html/swagger.yml:ro
+      - ./docs/swagger-ui:/usr/share/nginx/html/swagger-ui:ro
+  swagger_editor:
+    image: swaggerapi/swagger-editor:latest
+
