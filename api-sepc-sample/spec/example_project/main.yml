@@ -1,0 +1,18 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Example Project
+  license:
+    name: MIT
+servers:
+    - url: http://localhost:3000/
+paths:
+  /holidays:
+    $ref: './paths/holidays.yml'
+components:
+  schemas:
+    holidays:
+      $ref: './components/holidays.yml'
+  examples:
+    holidayExample:
+      $ref: './components/examples/holidays.yml'

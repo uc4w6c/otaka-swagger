@@ -1,0 +1,16 @@
+get:
+  summary: 祝日リストのAPI
+  operationId: holidays
+  tags:
+    - holidays
+  responses:
+    '200':
+      description: 祝日リスト
+      content:
+        application/json:
+          schema:
+            $ref: "../main.yml#/components/schemas/holidays"
+          examples:
+            holidayExample:
+              $ref: "../main.yml#/components/examples/holidayExample"
+

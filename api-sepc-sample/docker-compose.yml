@@ -1,0 +1,28 @@
+version: "3"
+services:
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    volumes:
+      - ./spec:/usr/share/nginx/html/spec
+    environment:
+      # 初期表示のspecを指定
+      API_URL: spec/example_project/combined.yml
+    ports:
+      - "8080:8080"
+  example_project-mock:
+    image: danielgtaylor/apisprout
+    volumes:
+      - ./spec:/spec
+    entrypoint: "/usr/local/bin/apisprout --watch"
+    command:
+      - /spec/example_project/combined.yml
+    ports:
+      - "3000:8000"
+  swagger-watch:
+    build: ./swagger-watch
+    volumes:
+      - /app/node_modules
+      - ./swagger-watch:/app
+      - ./spec:/spec
+    working_dir: /app
+    command: 'node index.js'
