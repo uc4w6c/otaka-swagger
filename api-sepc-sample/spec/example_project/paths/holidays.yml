@@ -2,7 +2,7 @@ get:
   summary: 祝日リストのAPI
   operationId: holidays
   tags:
-    - holidays
+    - holidaysaaa
   responses:
     '200':
       description: 祝日リスト
