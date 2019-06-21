@@ -9,8 +9,9 @@ services:
       API_URL: spec/example_project/combined.yml
     ports:
       - "8080:8080"
-  example_project-mock:
-    image: danielgtaylor/apisprout
+  apiMock:
+    image: danielgtaylor/apisprout:latest
+    container_name: "apiMock"
     volumes:
       - ./spec:/spec
     entrypoint: "/usr/local/bin/apisprout --watch"
