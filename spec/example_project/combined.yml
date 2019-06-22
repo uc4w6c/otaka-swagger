@@ -1,0 +1,109 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: おおたかの森.comで利用するAPI
+  license:
+    name: otakanomoli.com
+servers:
+  - url: 'http://localhost:3000/v1'
+    description: Development server
+  - url: 'https://otakanomoli.com/v1'
+    description: Production server
+paths:
+  /hospitals:
+    get:
+      summary: 病院検索のAPI
+      operationId: hospitals
+      tags:
+        - hospitals
+      parameters:
+        - in: query
+          name: howlong-takes
+          description: 駅からの徒歩時間
+          required: false
+          schema:
+            type: string
+        - in: query
+          name: department
+          description: 診療科目
+          required: false
+          schema:
+            type: string
+            enum:
+              - 0
+              - 1
+        - in: query
+          name: open-time
+          description: 現在空いているものを検索（2時間後まで）
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: open-week
+          description: 現在空いているものを検索（2時間後まで）
+          required: false
+          schema:
+            type: boolean
+        - in: query
+          name: current-lat
+          description: 現在位置の緯度（latitude）
+          required: false
+          schema:
+            type: double
+        - in: query
+          name: current-lng
+          description: 現在位置の経度（longitude）
+          required: false
+          schema:
+            type: double
+      responses:
+        '200':
+          description: 祝日リスト
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  holiday_list:
+                    type: array
+                    items:
+                      type: string
+                      example:
+                        - '20190501'
+                        - '20190502'
+                        - '20190503'
+                        - '20190504'
+                        - '20190505'
+              examples:
+                holidayExample:
+                  value:
+                    holiday_list:
+                      - 20190501
+                      - 20190502
+                      - 20190503
+                      - 20190504
+                      - 20190505
+components:
+  schemas:
+    hospitals:
+      type: object
+      properties:
+        holiday_list:
+          type: array
+          items:
+            type: string
+            example:
+              - '20190501'
+              - '20190502'
+              - '20190503'
+              - '20190504'
+              - '20190505'
+  examples:
+    hospitalsExample:
+      value:
+        holiday_list:
+          - 20190501
+          - 20190502
+          - 20190503
+          - 20190504
+          - 20190505

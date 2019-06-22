@@ -1,0 +1,21 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: おおたかの森.comで利用するAPI
+  license:
+    name: otakanomoli.com
+servers:
+    - url: http://localhost:3000/v1
+      description: Development server
+    - url: https://otakanomoli.com/v1
+      description: Production server
+paths:
+  /hospitals:
+    $ref: './paths/hospitals.yml'
+components:
+  schemas:
+    hospitals:
+      $ref: './components/hospitals.yml'
+  examples:
+    hospitalsExample:
+      $ref: './components/examples/hospitals.yml'

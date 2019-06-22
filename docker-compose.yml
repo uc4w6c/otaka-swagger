@@ -1,17 +1,28 @@
-version: '2'
+version: "3"
 services:
-  web:
-    image: nginx:latest
-    ports:
-      - "8000:80"
-    links:
-      - swagger_editor:swagger_editor
-    depends_on:
-      - swagger_editor
+  swagger-ui:
+    image: swaggerapi/swagger-ui
     volumes:
-      - ./docs/swagger-editor.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./docs/swagger.yml:/usr/share/nginx/html/swagger.yml:ro
-      - ./docs/swagger-ui:/usr/share/nginx/html/swagger-ui:ro
-  swagger_editor:
-    image: swaggerapi/swagger-editor:latest
-
+      - ./spec:/usr/share/nginx/html/spec
+    environment:
+      # 初期表示のspecを指定
+      API_URL: spec/example_project/combined.yml
+    ports:
+      - "8080:8080"
+  apiMock:
+    image: danielgtaylor/apisprout:latest
+    volumes:
+      - ./spec:/spec
+    entrypoint: "/usr/local/bin/apisprout --watch"
+    command:
+      - /spec/example_project/combined.yml
+    ports:
+      - "3000:8000"
+  swagger-watch:
+    build: ./swagger-watch
+    volumes:
+      - /app/node_modules
+      - ./swagger-watch:/app
+      - ./spec:/spec
+    working_dir: /app
+    command: 'node index.js'
