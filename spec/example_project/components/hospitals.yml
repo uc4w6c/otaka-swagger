@@ -1,7 +1,95 @@
 type: object
 properties:
-  holiday_list:
+  id:
+    type: string
+    description: ID
+    example: '1'
+  name:
+    type: string
+    description: 病院名
+    example: 'おおたかの森.com病院'
+  postal_code:
+    type: string
+    description: 郵便番号
+    example: '270-0121'
+  address:
+    type: string
+    description: 住所
+    example: '千葉県流山市西初石六丁目185-2'
+  tel:
+    type: string
+    description: 電話番号
+    example: '04-7152-3333'
+  url:
+    type: string
+    description: ホームページ
+    example: 'https://www.otakanomori-sc.com/'
+  am_start:
+    type: string
+    description: 午前開始時間
+    example: '09:00'
+  am_end:
+    type: string
+    description: 午前終了時間
+    example: '11:30'
+  pm_start:
+    type: string
+    description: 午後開始時間
+    example: '12:30'
+  pm_end:
+    type: string
+    description: 午後終了時間
+    example: '17:30'
+  reservation:
     type: array
     items:
-      type: string
-      example: ["20190501", "20190502", "20190503", "20190504", "20190505"]
+      type: object
+      properties:
+        type:
+          type: string
+          description: >
+            予約方法:
+             * `0` - 電話予約
+             * `1` - インターネット予約
+          enum: ['0', '1']
+          example: '0'
+        body:
+          type: string
+          description: 予約連絡先
+          example: '04-7152-3333'
+  department:
+    type: array
+    description: 診療科
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+          example: '内科'
+        business_time_list:
+          type: array
+          items:
+            type: object
+            properties:
+              week:
+                type: string
+                description: >
+                  曜日:
+                  * `0` - 土曜日
+                  * `1` - 日曜日
+                  * `2` - 月曜日
+                  * `3` - 火曜日
+                  * `4` - 水曜日
+                  * `5` - 木曜日
+                  * `6` - 金曜日
+                  * `7` - 祝日
+                enum: ['0', '1', '2', '3', '4', '5', '6', '7', '8']
+                example: '0'
+              start:
+                type: string
+                description: 開始時間
+                example: '09:00'
+              end:
+                type: string
+                description: 終了時間
+                example: '12:00'

@@ -1,7 +1,31 @@
 value:
-  holiday_list:
-    - 20190501
-    - 20190502
-    - 20190503
-    - 20190504
-    - 20190505
+  name: 'おおたかの森.com病院'
+  postal_code: '270-0121'
+  address: '千葉県流山市西初石六丁目185-2'
+  tel: '04-7152-3333'
+  url: 'https://www.otakanomori-sc.com/'
+  reservation:
+    - type: '0'
+      body: '04-7152-3333'
+    - type: '1'
+      body: 'https://www.otakanomori-sc.com/'
+  department:
+    - name: '内科'
+      business_time_list:
+        - week: '0'
+          start: '09:00'
+          end: '12:00'
+        - week: '0'
+          start: '13:00'
+          end: '18:00'
+        - week: '7'
+          start: '13:00'
+          end: '18:00'
+    - name: '小児科'
+      business_time_list:
+        - week: '0'
+          start: '09:00'
+          end: '12:00'
+        - week: '0'
+          start: '13:00'
+          end: '18:00'
