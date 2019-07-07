@@ -9,7 +9,7 @@ get:
       description: 駅からの徒歩時間
       required: false
       schema:
-        type: string
+        type: number
     - in: query
       name: department
       description: 診療科目
